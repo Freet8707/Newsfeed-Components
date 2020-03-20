@@ -99,6 +99,26 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+  class Article {
+    constructor(articleElement){
+      this.article = document.createElement("div")
+      this.title = document.createElement("h2")
+      this.date = document.createElement("p")
+      this.text1 = document.createElement("p")
+      this.text2 = document.createElement("p")
+      this.text3 = document.createElement("p")
+      this.span = document.createElement("span")
+
+      this.article.classList.add("article")
+      this.date.classList.add("date")
+      this.title.textContent = articleElement.title
+      this.date.textContent = articleElement.date
+      this.text1.textContent = articleElement.firstParagraph
+      this.text2.textContent = articleElement.secondParagraph
+      this.text3.textContent = articleElement.thirdParagraph
+    }
+  }
+
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
