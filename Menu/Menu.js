@@ -9,6 +9,29 @@ let menuItems = [
   'Log Out'
 ];
 
+class Menu {
+  constructor(menuItems){
+    this.menu = document.createElement("div")
+    this.list = document.createElement("ul")
+    this.menu.classList.add("menu")
+    this.mainMenu = document.querySelector(".menu-button")
+    this.header = document.querySelector(".header")
+    this.header.appendChild(this.menu)
+
+    for(let i = 0; i < menuItems.length; i++){
+      let listItem = document.createElement("li")
+      listItem.textContent = menuItems[i]
+      this.list.appendChild(listItem)
+    }
+    this.mainMenu.addEventListener("click", (event) => {
+      this.menu.classList.toggle("menu--open")
+    })
+    this.menu.appendChild(this.list)
+  }
+}
+
+const menuConstruct = new Menu(menuItems)
+
 /* 
 
   Step 1: Write a function that will create a menu component as seen below:
@@ -18,6 +41,27 @@ let menuItems = [
       {each menu item as a list item}
     </ul>
   </div>
+
+  class Menu {
+    constructor(menuItems){
+      this.menu = documnent.createElement("div")
+      this.list = document.createElement("ul")
+      this.menu.classList.add("menu")
+
+      for(let i = 0, i < menuItems.length, i++){
+        let listItem = document.createElement("li")
+        listItem.textContent = menuItems[i]
+        this.list.appendChild(listItem)
+      }
+      this.menu.appendChild(this.list)
+
+      this.menuSelector = document.querySelector(".menu-button")
+      this.menuSelector.addEventListener("click", (event) => {
+        this.menu.classList.toggle("menu--open")
+      })
+      this.menuSelector.appendChild(this.menu)
+    }
+  }
 
   The function takes an array as its only argument.
 
