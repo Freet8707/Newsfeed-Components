@@ -88,6 +88,54 @@ const data = [
   }
 ];
 
+class Article {
+  constructor(articleElement){
+    this.article = document.createElement("div")
+    this.title = document.createElement("h2")
+    this.date = document.createElement("p")
+    this.text1 = document.createElement("p")
+    this.text2 = document.createElement("p")
+    this.text3 = document.createElement("p")
+    this.span = document.createElement("span")
+
+    this.article.classList.add("article")
+    this.date.classList.add("date")
+    this.span.classList.add("expandButton")
+    this.title.textContent = articleElement.title
+    this.date.textContent = articleElement.date
+    this.text1.textContent = articleElement.firstParagraph
+    this.text2.textContent = articleElement.secondParagraph
+    this.text3.textContent = articleElement.thirdParagraph
+    this.span.textContent = "click me"
+    // console.log(this)
+    this.span.addEventListener("click", (event) => {
+      this.article.classList.toggle("article-open")
+    })
+
+    this.article.appendChild(this.title)
+    this.article.appendChild(this.date)
+    this.article.appendChild(this.text1)
+    this.article.appendChild(this.text2)
+    this.article.appendChild(this.text3)
+    this.article.appendChild(this.span)
+
+    this.articleHold = document.querySelector(".articles")
+    this.articleHold.appendChild(this.article)
+  }
+}
+
+const articleArray = data.map((articleElement) => {
+  return new Article(articleElement)
+})
+// console.log(articleArray)
+// const articlesDiv = document.querySelector(".articles")
+
+// articleArray.forEach((element) => {
+//   console.log(element)
+//   // let articlesDiv = document.querySelector(".articles")
+//   // // console.log(articlesDiv)
+//   // articlesDiv.appendChild(element)
+// })
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
@@ -111,13 +159,36 @@ const data = [
 
       this.article.classList.add("article")
       this.date.classList.add("date")
+      this.span.classList.add("expandButton")
       this.title.textContent = articleElement.title
       this.date.textContent = articleElement.date
       this.text1.textContent = articleElement.firstParagraph
       this.text2.textContent = articleElement.secondParagraph
       this.text3.textContent = articleElement.thirdParagraph
+      this.span.textContent = "click me"
     }
+
+    let articlesHold = document.querySelector(".articles")
+
+    let articleContent = () => {
+      this.article.appendChild(this.title)
+      this.article.appendChild(this.date)
+      this.article.appendChild(this.text1)
+      this.article.appendChild(this.text2)
+      this.article.appendChild(this.text3)
+      this.article.appendChild(this.span)
+      this.span.addEventListener("click", () => {
+        this.article.classList.toggle("article-open")
+      })
+      return this.article
+    }
+    
+    return articlesHold.appendChild(articleContent())
   }
+
+  data.forEach((articleElement) => {
+    return new Article(articleElement)
+  })
 
   Hint: You will need to use createElement more than once here!
 
