@@ -102,6 +102,11 @@
   padding: 30px 0;
   text-align: center;
 }
+.nav-item {
+  cursor: pointer;
+  text-decoration: none;
+  color: #f2f90e;
+}
 .menu--open {
   display: block;
 }
