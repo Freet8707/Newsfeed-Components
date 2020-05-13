@@ -85,9 +85,66 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: `Professional headache simulator: 2020`,
+    date: `March 19th, 2020`,
+    firstParagraph: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.`,
+
+    secondParagraph: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).`,
+
+    thirdParagraph: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged`
   }
 ];
 
+class Article {
+  constructor(articleElement){
+    this.article = document.createElement("div")
+    this.title = document.createElement("h2")
+    this.date = document.createElement("p")
+    this.text1 = document.createElement("p")
+    this.text2 = document.createElement("p")
+    this.text3 = document.createElement("p")
+    this.span = document.createElement("span")
+
+    this.article.classList.add("article")
+    this.date.classList.add("date")
+    this.span.classList.add("expandButton")
+    this.title.textContent = articleElement.title
+    this.date.textContent = articleElement.date
+    this.text1.textContent = articleElement.firstParagraph
+    this.text2.textContent = articleElement.secondParagraph
+    this.text3.textContent = articleElement.thirdParagraph
+    this.span.textContent = "click me"
+    // console.log(this)
+    this.span.addEventListener("click", (event) => {
+      this.article.classList.toggle("article-open")
+    })
+
+    this.article.appendChild(this.title)
+    this.article.appendChild(this.date)
+    this.article.appendChild(this.text1)
+    this.article.appendChild(this.text2)
+    this.article.appendChild(this.text3)
+    this.article.appendChild(this.span)
+
+    this.articleHold = document.querySelector(".articles")
+    this.articleHold.appendChild(this.article)
+  }
+}
+
+const articleArray = data.map((articleElement) => {
+  return new Article(articleElement)
+})
+// console.log(articleArray)
+// const articlesDiv = document.querySelector(".articles")
+
+// articleArray.forEach((element) => {
+//   console.log(element)
+//   // let articlesDiv = document.querySelector(".articles")
+//   // // console.log(articlesDiv)
+//   // articlesDiv.appendChild(element)
+// })
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
@@ -98,6 +155,49 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+
+  class Article {
+    constructor(articleElement){
+      this.article = document.createElement("div")
+      this.title = document.createElement("h2")
+      this.date = document.createElement("p")
+      this.text1 = document.createElement("p")
+      this.text2 = document.createElement("p")
+      this.text3 = document.createElement("p")
+      this.span = document.createElement("span")
+
+      this.article.classList.add("article")
+      this.date.classList.add("date")
+      this.span.classList.add("expandButton")
+      this.title.textContent = articleElement.title
+      this.date.textContent = articleElement.date
+      this.text1.textContent = articleElement.firstParagraph
+      this.text2.textContent = articleElement.secondParagraph
+      this.text3.textContent = articleElement.thirdParagraph
+      this.span.textContent = "click me"
+    }
+
+    let articlesHold = document.querySelector(".articles")
+
+    let articleContent = () => {
+      this.article.appendChild(this.title)
+      this.article.appendChild(this.date)
+      this.article.appendChild(this.text1)
+      this.article.appendChild(this.text2)
+      this.article.appendChild(this.text3)
+      this.article.appendChild(this.span)
+      this.span.addEventListener("click", () => {
+        this.article.classList.toggle("article-open")
+      })
+      return this.article
+    }
+    
+    return articlesHold.appendChild(articleContent())
+  }
+
+  data.forEach((articleElement) => {
+    return new Article(articleElement)
+  })
 
   Hint: You will need to use createElement more than once here!
 
