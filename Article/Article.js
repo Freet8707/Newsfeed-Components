@@ -133,7 +133,7 @@ class Article {
   }
 }
 
-const articleArray = data.map((articleElement) => {
+data.forEach((articleElement) => {
   return new Article(articleElement)
 })
 // console.log(articleArray)

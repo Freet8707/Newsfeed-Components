@@ -20,7 +20,16 @@ class Menu {
 
     for(let i = 0; i < menuItems.length; i++){
       let listItem = document.createElement("li")
-      listItem.textContent = menuItems[i]
+      let listNav = document.createElement('a')
+      listNav.classList.add('nav-item')
+      if (i === 0){
+          listNav.setAttribute('href', 'https://lambdaschool.com/')
+          listNav.setAttribute('target', '_blank')
+      } else {
+        listNav.setAttribute('href', '#')
+      }
+      listNav.textContent = menuItems[i]
+      listItem.appendChild(listNav)
       this.list.appendChild(listItem)
     }
     this.mainMenu.addEventListener("click", (event) => {
